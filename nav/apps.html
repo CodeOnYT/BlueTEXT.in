@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps - BlueTEXT.in</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    
+    <main class="content-container">
+        <h1>Our Apps</h1>
+        
+        <section class="app-showcase">
+            <article class="app-card">
+                <h2>CalculatorSc</h2>
+                <div class="app-info">
+                    <img src="assets/calculatorsc-icon.png" alt="CalculatorSc Icon" class="app-icon">
+                    <div class="app-details">
+                        <p class="app-description">
+                            A comprehensive calculator app with standard and scientific functions, 
+                            featuring a modern Material 3 design and powerful utilities.
+                        </p>
+                        
+                        <h3>Key Features:</h3>
+                        <ul>
+                            <li>Standard & Scientific Calculators</li>
+                            <li>Full Calculation History with Search</li>
+                            <li>Multiple Unit Converters (Length, Weight, Temperature, Volume)</li>
+                            <li>Financial Tools (Loan & Mortgage Calculators)</li>
+                            <li>Health Tools (BMI & Calorie/BMR Calculators)</li>
+                        </ul>
+
+                        <h3>Latest Updates:</h3>
+                        <ul>
+                            <li>Smaller app size with optimized performance</li>
+                            <li>Updated for Android 15 (API 35)</li>
+                            <li>Redesigned History screen with Material 3 cards</li>
+                            <li>Enhanced UI/UX with improved layout</li>
+                        </ul>
+
+                        <div class="app-links">
+                            <a href="https://github.com/mTulsiram/CalculatorSc" class="github-link" target="_blank">
+                                View on GitHub
+                            </a>
+                            <!-- Add Play Store link when available -->
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header and footer
+        fetch('/nav/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        fetch('/footer/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
