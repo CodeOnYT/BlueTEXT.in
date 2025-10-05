@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - BlueTEXT.in</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- Add Stripe for payments -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Header component -->
+    <div id="header-component"></div>
+    
+    <main class="main-content">
+        <section class="shop-header">
+            <h1>Shop</h1>
+            <div class="cart-widget">
+                <button class="cart-toggle" aria-label="Toggle cart">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Shop grid -->
+        <div class="shop-grid">
+            <!-- Digital Products -->
+            <article class="product-card" data-id="course-web-dev">
+                <img src="/assets/web-dev-course.jpg" alt="Web Development Course" class="product-image lazy-load">
+                <div class="product-info">
+                    <h2 class="product-title">Complete Web Development Course</h2>
+                    <p>Master modern web development with our comprehensive course.</p>
+                    <p class="product-price" data-price="49.99">$49.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="ebook-aws">
+                <img src="/assets/aws-ebook.jpg" alt="AWS Solutions Architect Guide" class="product-image lazy-load">
+                <div class="product-info">
+                    <h2 class="product-title">AWS Solutions Architect Guide</h2>
+                    <p>Complete guide to passing the AWS Solutions Architect exam.</p>
+                    <p class="product-price" data-price="29.99">$29.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </article>
+
+            <!-- Physical Products -->
+            <article class="product-card" data-id="tshirt-dev">
+                <img src="/assets/dev-tshirt.jpg" alt="Developer T-Shirt" class="product-image lazy-load">
+                <div class="product-info">
+                    <h2 class="product-title">Developer T-Shirt</h2>
+                    <p>Comfortable cotton t-shirt with developer-themed design.</p>
+                    <p class="product-price" data-price="24.99">$24.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </article>
+        </div>
+
+        <!-- Shopping Cart Sidebar -->
+        <aside class="cart-sidebar">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-cart" aria-label="Close cart">×</button>
+            </div>
+            <div class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: $<span>0.00</span></div>
+                <button class="checkout-button">Proceed to Checkout</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer component -->
+    <div id="footer-component"></div>
+
+    <!-- Load components and initialize shop -->
+    <script>
+        // Load header and footer components
+        fetch('/components/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-component').innerHTML = html;
+            });
+
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-component').innerHTML = html;
+            });
+    </script>
+    <script src="/scripts/main.js"></script>
+</body>
+</html>
