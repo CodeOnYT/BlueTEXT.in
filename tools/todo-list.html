@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .todo-container { max-width: 400px; margin: 2em auto; }
+    @media (max-width: 500px) { .todo-container { max-width: 98vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/tools/index.html" class="active">Tools</a>
+      <a href="/games/index.html">Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <div class="todo-container">
+      <h1>To-Do List</h1>
+      <input type="text" id="todo-input" placeholder="Add a task..." style="width:70%">
+      <button onclick="addTodo()" class="btn">Add</button>
+      <ul id="todo-list"></ul>
+    </div>
+    <script>
+      let todos = [];
+      function addTodo() {
+        const input = document.getElementById('todo-input');
+        if(input.value.trim()) {
+          todos.push(input.value.trim());
+          input.value = '';
+          renderTodos();
+        }
+      }
+      function renderTodos() {
+        const ul = document.getElementById('todo-list');
+        ul.innerHTML = '';
+        todos.forEach((todo, i) => {
+          const li = document.createElement('li');
+          li.textContent = todo;
+          li.onclick = () => removeTodo(i);
+          ul.appendChild(li);
+        });
+      }
+      function removeTodo(i) {
+        todos.splice(i,1);
+        renderTodos();
+      }
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

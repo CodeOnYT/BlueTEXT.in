@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Four - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .board { display: grid; grid-template-columns: repeat(7, 40px); grid-gap: 4px; margin: 2em auto; }
+    .cell { width: 40px; height: 40px; border-radius: 50%; background: #eee; text-align: center; font-size: 1.5em; cursor: pointer; }
+    @media (max-width: 500px) { .board { grid-template-columns: repeat(7, 10vw); } .cell { width: 10vw; height: 10vw; font-size: 4vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Connect Four</h1>
+    <div class="board" id="board"></div>
+    <div id="status" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      let board, current, gameOver;
+      function init() {
+        board = Array(6).fill().map(()=>Array(7).fill(''));
+        current = 'R';
+        gameOver = false;
+        render();
+      }
+      function render() {
+        const b = document.getElementById('board');
+        b.innerHTML = '';
+        for(let r=0;r<6;r++){
+          for(let c=0;c<7;c++){
+            const d = document.createElement('div');
+            d.className = 'cell';
+            d.style.background = board[r][c]==='R'?'red':board[r][c]==='Y'?'yellow':'#eee';
+            d.onclick = ()=>move(c);
+            b.appendChild(d);
+          }
+        }
+        document.getElementById('status').textContent = gameOver ? (winner() ? winner() + ' wins!' : 'Draw!') : (current==='R'?'Red':'Yellow') + "'s turn";
+      }
+      function move(col) {
+        if(gameOver) return;
+        for(let r=5;r>=0;r--){
+          if(!board[r][col]){
+            board[r][col]=current;
+            if(winner()||board.flat().every(c=>c))gameOver=true;
+            current=current==='R'?'Y':'R';
+            render();
+            break;
+          }
+        }
+      }
+      function winner() {
+        for(let r=0;r<6;r++)for(let c=0;c<7;c++){
+          let p=board[r][c];if(!p)continue;
+          if(c<4&&p===board[r][c+1]&&p===board[r][c+2]&&p===board[r][c+3])return p;
+          if(r<3&&p===board[r+1][c]&&p===board[r+2][c]&&p===board[r+3][c])return p;
+          if(r<3&&c<4&&p===board[r+1][c+1]&&p===board[r+2][c+2]&&p===board[r+3][c+3])return p;
+          if(r>2&&c<4&&p===board[r-1][c+1]&&p===board[r-2][c+2]&&p===board[r-3][c+3])return p;
+        }
+        return null;
+      }
+      function resetGame(){init();}
+      init();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

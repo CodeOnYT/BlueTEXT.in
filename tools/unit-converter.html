@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in" height="32"></a>
+      <ul class="nav-links">
+        <li><a href="/tools/index.html" class="active">Tools</a></li>
+        <li><a href="/courses/index.html">Courses</a></li>
+        <li><a href="/shop/index.html">Shop</a></li>
+        <li><a href="/blog/index.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main-content">
+    <section class="tool-hero">
+      <h1>Unit Converter</h1>
+      <p>Convert between common units (length, weight, temperature).</p>
+    </section>
+    <section class="converter-section">
+      <select id="converter-type" onchange="updateConverter()">
+        <option value="length">Length</option>
+        <option value="weight">Weight</option>
+        <option value="temperature">Temperature</option>
+      </select>
+      <div id="converter-fields"></div>
+      <div id="converter-result" style="margin-top:1em;font-weight:bold;"></div>
+    </section>
+    <script>
+      function updateConverter() {
+        const type = document.getElementById('converter-type').value;
+        let html = '';
+        if(type === 'length') {
+          html = 'Value: <input type="number" id="length-value"> <select id="length-from"><option value="m">Meter</option><option value="km">Kilometer</option><option value="mi">Mile</option></select> to <select id="length-to"><option value="m">Meter</option><option value="km">Kilometer</option><option value="mi">Mile</option></select> <button onclick="convertLength()">Convert</button>';
+        } else if(type === 'weight') {
+          html = 'Value: <input type="number" id="weight-value"> <select id="weight-from"><option value="kg">Kilogram</option><option value="lb">Pound</option></select> to <select id="weight-to"><option value="kg">Kilogram</option><option value="lb">Pound</option></select> <button onclick="convertWeight()">Convert</button>';
+        } else if(type === 'temperature') {
+          html = 'Value: <input type="number" id="temp-value"> <select id="temp-from"><option value="C">Celsius</option><option value="F">Fahrenheit</option></select> to <select id="temp-to"><option value="C">Celsius</option><option value="F">Fahrenheit</option></select> <button onclick="convertTemp()">Convert</button>';
+        }
+        document.getElementById('converter-fields').innerHTML = html;
+        document.getElementById('converter-result').textContent = '';
+      }
+      function convertLength() {
+        const value = parseFloat(document.getElementById('length-value').value);
+        const from = document.getElementById('length-from').value;
+        const to = document.getElementById('length-to').value;
+        let meters;
+        if(from === 'm') meters = value;
+        else if(from === 'km') meters = value * 1000;
+        else if(from === 'mi') meters = value * 1609.34;
+        let result;
+        if(to === 'm') result = meters;
+        else if(to === 'km') result = meters / 1000;
+        else if(to === 'mi') result = meters / 1609.34;
+        document.getElementById('converter-result').textContent = `${value} ${from} = ${result} ${to}`;
+      }
+      function convertWeight() {
+        const value = parseFloat(document.getElementById('weight-value').value);
+        const from = document.getElementById('weight-from').value;
+        const to = document.getElementById('weight-to').value;
+        let kg = from === 'kg' ? value : value * 0.453592;
+        let result = to === 'kg' ? kg : kg / 0.453592;
+        document.getElementById('converter-result').textContent = `${value} ${from} = ${result} ${to}`;
+      }
+      function convertTemp() {
+        const value = parseFloat(document.getElementById('temp-value').value);
+        const from = document.getElementById('temp-from').value;
+        const to = document.getElementById('temp-to').value;
+        let result;
+        if(from === to) result = value;
+        else if(from === 'C' && to === 'F') result = value * 9/5 + 32;
+        else if(from === 'F' && to === 'C') result = (value - 32) * 5/9;
+        document.getElementById('converter-result').textContent = `${value}°${from} = ${result}°${to}`;
+      }
+      updateConverter();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

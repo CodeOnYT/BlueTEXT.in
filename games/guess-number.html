@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Guess the Number</h1>
+    <p>Guess a number between 1 and 100.</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="checkGuess()" class="btn">Guess</button>
+    <div id="result" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      let number = Math.floor(Math.random()*100)+1;
+      let tries = 0;
+      function checkGuess() {
+        const guess = parseInt(document.getElementById('guess').value);
+        tries++;
+        if(guess === number) {
+          document.getElementById('result').textContent = `Correct! You guessed in ${tries} tries.`;
+        } else if(guess < number) {
+          document.getElementById('result').textContent = 'Too low!';
+        } else {
+          document.getElementById('result').textContent = 'Too high!';
+        }
+      }
+      function resetGame() {
+        number = Math.floor(Math.random()*100)+1;
+        tries = 0;
+        document.getElementById('result').textContent = '';
+        document.getElementById('guess').value = '';
+      }
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

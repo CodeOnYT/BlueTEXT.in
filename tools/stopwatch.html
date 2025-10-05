@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .stopwatch-container { max-width: 400px; margin: 2em auto; text-align: center; }
+    @media (max-width: 500px) { .stopwatch-container { max-width: 98vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/tools/index.html" class="active">Tools</a>
+      <a href="/games/index.html">Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <div class="stopwatch-container">
+      <h1>Stopwatch</h1>
+      <div id="display" style="font-size:2em;margin:1em 0;">00:00:00</div>
+      <button onclick="start()" class="btn">Start</button>
+      <button onclick="stop()" class="btn">Stop</button>
+      <button onclick="reset()" class="btn">Reset</button>
+    </div>
+    <script>
+      let timer, elapsed = 0;
+      function start() {
+        if(timer) return;
+        timer = setInterval(()=>{elapsed++;render();},1000);
+      }
+      function stop() {
+        clearInterval(timer);timer=null;
+      }
+      function reset() {
+        stop();elapsed=0;render();
+      }
+      function render() {
+        let h = Math.floor(elapsed/3600), m = Math.floor((elapsed%3600)/60), s = elapsed%60;
+        document.getElementById('display').textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      }
+      render();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>
