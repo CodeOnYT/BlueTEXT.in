@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .rps-btn { font-size: 1.5em; margin: 0.5em; padding: 0.5em 1em; }
+    @media (max-width: 500px) { .rps-btn { font-size: 5vw; padding: 1vw 2vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Rock Paper Scissors</h1>
+    <button class="rps-btn" onclick="play('rock')">🪨 Rock</button>
+    <button class="rps-btn" onclick="play('paper')">📄 Paper</button>
+    <button class="rps-btn" onclick="play('scissors')">✂️ Scissors</button>
+    <div id="rps-result" style="margin-top:1em;font-weight:bold;"></div>
+    <script>
+      function play(user) {
+        const choices = ['rock','paper','scissors'];
+        const comp = choices[Math.floor(Math.random()*3)];
+        let result = '';
+        if(user===comp) result = 'Draw!';
+        else if((user==='rock'&&comp==='scissors')||(user==='paper'&&comp==='rock')||(user==='scissors'&&comp==='paper')) result = 'You win!';
+        else result = 'You lose!';
+        document.getElementById('rps-result').textContent = `Computer chose ${comp}. ${result}`;
+      }
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

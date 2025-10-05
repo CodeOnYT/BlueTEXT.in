@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker - BlueTEXT.in</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in" height="32"></a>
+            <ul class="nav-links">
+                <li><a href="/tools/index.html">Tools</a></li>
+                <li><a href="/courses/index.html">Courses</a></li>
+                <li><a href="/portfolio.html">Portfolio</a></li>
+                <li><a href="/blog/index.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="tool-section">
+            <h1>Color Picker</h1>
+            <p>Select a color and copy its value.</p>
+            <input type="color" id="color-input" value="#3498db" style="width:60px; height:60px;">
+            <div>
+                <input type="text" id="color-value" value="#3498db" readonly style="width:100px;">
+                <button onclick="copyColor()" class="btn">Copy</button>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2024 BlueTEXT.in</p>
+    </footer>
+    <script>
+    const colorInput = document.getElementById('color-input');
+    const colorValue = document.getElementById('color-value');
+    colorInput.addEventListener('input', function() {
+        colorValue.value = colorInput.value;
+    });
+    function copyColor() {
+        colorValue.select();
+        document.execCommand('copy');
+    }
+    </script>
+</body>
+</html>

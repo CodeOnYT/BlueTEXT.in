@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Material Icons -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="BlueTEXT.in - Your hub for development resources, courses, and tools" />
     <title>BlueTEXT.in - Development Resources & Tools</title>
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4KGMMJ1YY"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-K4KGMMJ1YY');
+        </script>
     
     <!-- SEO and social media tags -->
     <meta property="og:title" content="BlueTEXT.in - Development Resources & Tools" />
@@ -18,26 +27,132 @@
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/styles/main.css" as="style" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/styles/main.css" />
-    
-    <!-- Domain redirect script -->
-    <script>
-        if (window.location.protocol !== 'https:' || 
-            (window.location.hostname !== 'bluetext.in' && window.location.hostname !== 'www.bluetext.in')) {
-            window.location.href = 'https://bluetext.in' + window.location.pathname;
-        }
-    </script>
-  </head>
-  <body>
-    <!-- Header component -->
-    <div id="header-component"></div>
-    
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <!-- Material 3 Navigation Bar -->
+    <nav class="nav-container">
+      <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in"></a>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="/courses/index.html">Courses <span class="material-icons" style="font-size:1em;vertical-align:middle;">expand_more</span></a>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="/courses/html-intro.html">HTML Introduction</a></li>
+              <li><a href="/courses/css-basics.html">CSS Basics</a></li>
+              <li><a href="/courses/js-intro.html">JavaScript Introduction</a></li>
+              <li><a href="/courses/webapi-fetch.html">Web API Basics</a></li>
+              <li><a href="/courses/index.html">All Courses</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="/tools/index.html">Tools <span class="material-icons" style="font-size:1em;vertical-align:middle;">expand_more</span></a>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="/tools/json-formatter.html">JSON Formatter</a></li>
+              <li><a href="/tools/code-converter.html">Code Converter</a></li>
+              <li><a href="/tools/regex-tester.html">Regex Tester</a></li>
+              <li><a href="/tools/color-picker.html">Color Picker</a></li>
+              <li><a href="/tools/calculator.html">Calculator</a></li>
+              <li><a href="/tools/unit-converter.html">Unit Converter</a></li>
+              <li><a href="/tools/markdown-editor.html">Markdown Editor</a></li>
+              <li><a href="/tools/password-generator.html">Password Generator</a></li>
+              <li><a href="/tools/todo-list.html">To-Do List</a></li>
+              <li><a href="/tools/stopwatch.html">Stopwatch</a></li>
+              <li><a href="/tools/timer.html">Timer</a></li>
+              <li><a href="/tools/index.html">All Tools</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="/games/index.html">Games <span class="material-icons" style="font-size:1em;vertical-align:middle;">expand_more</span></a>
+          <div class="dropdown-menu">
+            <div class="dropdown-category">
+              <span>Puzzle & Logic</span>
+              <ul>
+                <li><a href="/games/tictactoe.html">Tic Tac Toe</a></li>
+                <li><a href="/games/2048.html">2048</a></li>
+                <li><a href="/games/minesweeper.html">Minesweeper</a></li>
+                <li><a href="/games/memory.html">Memory Game</a></li>
+                <li><a href="/games/connect4.html">Connect Four</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-category">
+              <span>Arcade & Action</span>
+              <ul>
+                <li><a href="/games/snake.html">Snake</a></li>
+                <li><a href="/games/breakout.html">Breakout</a></li>
+                <li><a href="/games/pinball.html">Pinball (coming soon)</a></li>
+                <li><a href="/games/fighting.html">Fighting Game (coming soon)</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-category">
+              <span>Casual & Fun</span>
+              <ul>
+                <li><a href="/games/guess-number.html">Guess the Number</a></li>
+                <li><a href="/games/rock-paper-scissors.html">Rock Paper Scissors</a></li>
+              </ul>
+            </div>
+            <div class="dropdown-category">
+              <span>Endless & Platformer</span>
+              <ul>
+                <li><a href="/games/endless-car.html">Infinite Car Driving (coming soon)</a></li>
+                <li><a href="/games/endless-plane.html">Infinite Plane Flying (coming soon)</a></li>
+                <li><a href="/games/mario.html">Mario Platformer (coming soon)</a></li>
+                <li><a href="/games/temple-run.html">Temple Run (coming soon)</a></li>
+                <li><a href="/games/candy-crush.html">Candy Crush (coming soon)</a></li>
+              </ul>
+            </div>
+            <a href="/games/categories.html" class="btn" style="margin:1em 0 0 1em;">All Categories</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="/shop/index.html">Shop <span class="material-icons" style="font-size:1em;vertical-align:middle;">expand_more</span></a>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="/shop/index.html">Shop Home</a></li>
+              <li><a href="/shop/index.html#ebooks">eBooks</a></li>
+              <li><a href="/shop/index.html#merch">Merch</a></li>
+              <li><a href="/shop/index.html#stickers">Stickers</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="/blog/index.html">Blog <span class="material-icons" style="font-size:1em;vertical-align:middle;">expand_more</span></a>
+          <div class="dropdown-menu">
+            <ul>
+              <li><a href="/blog/index.html">Blog Home</a></li>
+              <li><a href="/blog/first-post.html">Welcome Post</a></li>
+              <li><a href="/blog/learn-html-basics.html">Learn HTML Basics</a></li>
+              <li><a href="/blog/css-flexbox-guide.html">CSS Flexbox Guide</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+        var lang = document.getElementById('lang-select').value;
+        // Example: Only changes hero text for demo
+        var hero = document.querySelector('.hero h1');
+        if(lang === 'hi') hero.textContent = 'ब्लूटेक्स्ट.इन में आपका स्वागत है';
+        else if(lang === 'es') hero.textContent = 'Bienvenido a BlueTEXT.in';
+        else hero.textContent = 'Welcome to BlueTEXT.in';
+      }
+      </script>
+      <script>
+      function searchSite() {
+        var query = document.getElementById('search-input').value.toLowerCase();
+        var results = [];
+        // Example: Search static content (expand with real data)
+        if (query.includes('html')) results.push('<a href="/courses/html-intro.html">HTML Introduction</a>');
+        if (query.includes('css')) results.push('<a href="/courses/css-basics.html">CSS Basics</a>');
+        if (query.includes('blog')) results.push('<a href="/blog/index.html">Blog</a>');
+        document.getElementById('search-results').innerHTML = results.length ? results.join('<br>') : 'No results found.';
+        document.getElementById('search-results').style.display = 'block';
+        return false;
+      }
+      </script>
     <!-- Main content -->
     <main class="main-content">
       <div class="hero">
@@ -74,6 +189,85 @@
         </div>
       </section>
       
+        <!-- Learning Section with Tabs -->
+        <section class="learning-section">
+          <h2>Learning</h2>
+          <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('html')">HTML</button>
+            <button class="tab-btn" onclick="showTab('css')">CSS</button>
+            <button class="tab-btn" onclick="showTab('js')">JavaScript</button>
+            <button class="tab-btn" onclick="showTab('webapi')">Web APIs</button>
+          </div>
+          <div class="tab-content" id="tab-html">
+            <h3>Learn HTML</h3>
+            <p>HTML (HyperText Markup Language) is the foundation of web pages. Learn how to structure content, use semantic tags, and build accessible sites.</p>
+            <ul>
+            <li><a href="/courses/html-intro.html">HTML Introduction</a></li>
+            <li><a href="/courses/html-forms.html">HTML Forms</a></li>
+            <li><a href="/courses/html-semantics.html">Semantic HTML</a></li>
+            <li><a href="/courses/html5-new.html">HTML5 New Features</a></li>
+            <li><a href="/courses/html-accessibility.html">HTML Accessibility</a></li>
+            <li><a href="/courses/html-best-practices.html">HTML Best Practices</a></li>
+              <li><a href="/courses/html-intro.html">HTML Introduction</a></li>
+              <li><a href="/courses/html-forms.html">HTML Forms</a></li>
+              <li><a href="/courses/html-semantics.html">Semantic HTML</a></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="tab-css" style="display:none">
+            <h3>Learn CSS</h3>
+            <p>CSS (Cascading Style Sheets) lets you style and layout web pages. Discover selectors, flexbox, grid, and responsive design techniques.</p>
+            <ul>
+            <li><a href="/courses/css-basics.html">CSS Basics</a></li>
+            <li><a href="/courses/css-flexbox.html">Flexbox</a></li>
+            <li><a href="/courses/css-grid.html">CSS Grid</a></li>
+            <li><a href="/courses/css-animations.html">CSS Animations</a></li>
+            <li><a href="/courses/css-responsive.html">Responsive Design</a></li>
+            <li><a href="/courses/css-best-practices.html">CSS Best Practices</a></li>
+              <li><a href="/courses/css-basics.html">CSS Basics</a></li>
+              <li><a href="/courses/css-flexbox.html">Flexbox</a></li>
+              <li><a href="/courses/css-grid.html">CSS Grid</a></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="tab-js" style="display:none">
+            <h3>Learn JavaScript</h3>
+            <p>JavaScript powers interactive web experiences. Learn syntax, DOM manipulation, ES6 features, and more.</p>
+            <ul>
+            <li><a href="/courses/js-intro.html">JavaScript Introduction</a></li>
+            <li><a href="/courses/js-dom.html">DOM Manipulation</a></li>
+            <li><a href="/courses/js-es6.html">ES6 & Modern JS</a></li>
+            <li><a href="/courses/js-async.html">Async JavaScript</a></li>
+            <li><a href="/courses/js-frameworks.html">JS Frameworks Overview</a></li>
+            <li><a href="/courses/js-best-practices.html">JavaScript Best Practices</a></li>
+              <li><a href="/courses/js-intro.html">JavaScript Introduction</a></li>
+              <li><a href="/courses/js-dom.html">DOM Manipulation</a></li>
+              <li><a href="/courses/js-es6.html">ES6 & Modern JS</a></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="tab-webapi" style="display:none">
+            <h3>Learn Web APIs</h3>
+            <p>Web APIs allow you to interact with browser features and external services. Explore Fetch API, Local Storage, and more.</p>
+            <ul>
+            <li><a href="/courses/webapi-fetch.html">Fetch API</a></li>
+            <li><a href="/courses/webapi-storage.html">Local Storage</a></li>
+            <li><a href="/courses/webapi-other.html">Other APIs</a></li>
+            <li><a href="/courses/webapi-serviceworker.html">Service Workers</a></li>
+            <li><a href="/courses/webapi-geolocation.html">Geolocation API</a></li>
+            <li><a href="/courses/webapi-best-practices.html">Web API Best Practices</a></li>
+              <li><a href="/courses/webapi-fetch.html">Fetch API</a></li>
+              <li><a href="/courses/webapi-storage.html">Local Storage</a></li>
+              <li><a href="/courses/webapi-other.html">Other APIs</a></li>
+            </ul>
+          </div>
+        </section>
+        <script>
+        function showTab(tab) {
+          const tabs = ['html', 'css', 'js', 'webapi'];
+          tabs.forEach(function(t) {
+            document.getElementById('tab-' + t).style.display = (t === tab) ? '' : 'none';
+            document.querySelector('.tab-btn[onclick="showTab(\'' + t + '\')"]').classList.toggle('active', t === tab);
+          });
+        }
+        </script>
       <section class="featured-app">
         <h2>Featured App: CalculatorSc</h2>
         <div class="app-showcase">
@@ -128,41 +322,6 @@
         </div>
       </section>
     </main>
-        <ul class="navigation-links">
-          <li><a href="/nav/about.html" class="nav-link-white">About</a></li>
-          <li>
-            <a href="/nav/Portfolio.html" class="nav-link-white">Portfolio</a>
-          </li>
-          <li><a href="/nav/blog.html" class="nav-link-white">Blog</a></li>
-          <li>
-            <a href="/nav/contact.html" class="nav-link-white">Contact</a>
-          </li>
-          <li>
-            <a href="/nav/Services.html" class="nav-link-white">Services</a>
-          </li>
-          <li>
-            <a href="/nav/courses.html" class="nav-link-white">Courses</a>
-          </li>
-          <li><a href="/nav/Shop.html" class="nav-link-white">Shop</a></li>
-          <li><a href="/nav/tools.html" class="nav-link-white">Tools</a></li>
-          <li><a href="/nav/donate.html" class="nav-link-white">Donate</a></li>
-          <form action="#" method="get" class="search-bar">
-            <label for="search" class="nav-link-white">Search:</label>
-            <input
-              type="text"
-              id="search"
-              name="search"
-              placeholder="Search..."
-            />
-            <button type="submit">Search</button>
-          </form>
-        </ul>
-        <div class="hamburger-menu">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-      </nav>
     </header>
     <main id="content-container">
       <div>

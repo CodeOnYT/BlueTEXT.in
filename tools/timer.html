@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .timer-container { max-width: 400px; margin: 2em auto; text-align: center; }
+    @media (max-width: 500px) { .timer-container { max-width: 98vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/tools/index.html" class="active">Tools</a>
+      <a href="/games/index.html">Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <div class="timer-container">
+      <h1>Timer</h1>
+      <input type="number" id="timer-input" value="60" min="1" style="width:60px;"> seconds
+      <button onclick="startTimer()" class="btn">Start</button>
+      <div id="timer-display" style="font-size:2em;margin:1em 0;">01:00</div>
+      <button onclick="stopTimer()" class="btn">Stop</button>
+      <button onclick="resetTimer()" class="btn">Reset</button>
+    </div>
+    <script>
+      let timer, remaining = 60;
+      function startTimer() {
+        stopTimer();
+        remaining = parseInt(document.getElementById('timer-input').value);
+        render();
+        timer = setInterval(()=>{
+          if(remaining>0){remaining--;render();}
+          else{stopTimer();}
+        },1000);
+      }
+      function stopTimer() { clearInterval(timer); }
+      function resetTimer() { stopTimer(); remaining = parseInt(document.getElementById('timer-input').value); render(); }
+      function render() {
+        let m = Math.floor(remaining/60), s = remaining%60;
+        document.getElementById('timer-display').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      }
+      render();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Signup - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <!-- Auth0 CDN -->
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.22/auth0-spa-js.production.js"></script>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in" height="32"></a>
+      <ul class="nav-links">
+        <li><a href="/courses/index.html">Courses</a></li>
+        <li><a href="/tools/index.html">Tools</a></li>
+        <li><a href="/shop/index.html">Shop</a></li>
+        <li><a href="/blog/index.html">Blog</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/testimonials.html">Testimonials</a></li>
+        <li><a href="/quiz.html">Quiz</a></li>
+        <li><a href="/community.html">Community</a></li>
+        <li><a href="/auth.html" class="active">Login / Signup</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main-content">
+    <section class="auth-hero">
+      <h1>Login / Signup</h1>
+      <p>Access exclusive features by logging in or creating an account.</p>
+    </section>
+    <section class="auth-section">
+      <button id="login" class="btn">Login / Signup with Auth0</button>
+      <button id="logout" class="btn" style="display:none">Logout</button>
+      <div id="user-profile" style="display:none"></div>
+    </section>
+    <script>
+      // Replace with your Auth0 domain and client ID
+    const auth0Domain = 'bluetext.us.auth0.com';
+    const auth0ClientId = 'UwEUPOrPHimVLt2RTIh53sPW0TriMipl';
+      let auth0 = null;
+      async function initAuth0() {
+        auth0 = await createAuth0Client({
+          domain: auth0Domain,
+          client_id: auth0ClientId,
+          cacheLocation: 'localstorage'
+        });
+        updateUI();
+      }
+      function updateUI() {
+        auth0.isAuthenticated().then(isAuth => {
+          document.getElementById('login').style.display = isAuth ? 'none' : '';
+          document.getElementById('logout').style.display = isAuth ? '' : 'none';
+          document.getElementById('user-profile').style.display = isAuth ? '' : 'none';
+          if(isAuth) {
+            auth0.getUser().then(user => {
+              document.getElementById('user-profile').innerHTML = `<h3>Welcome, ${user.name}</h3><p>Email: ${user.email}</p>`;
+            });
+          }
+        });
+      }
+      window.onload = initAuth0;
+      document.getElementById('login').onclick = () => auth0.loginWithRedirect();
+      document.getElementById('logout').onclick = () => auth0.logout({ returnTo: window.location.origin });
+    </script>
+    <p style="margin-top:2em;color:#888;font-size:0.9em">Note: Replace <code>YOUR_AUTH0_DOMAIN</code> and <code>YOUR_AUTH0_CLIENT_ID</code> with your Auth0 credentials.</p>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minesweeper - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .minesweeper-board { display: grid; grid-template-columns: repeat(8, 32px); grid-gap: 2px; margin: 2em auto; }
+    .minesweeper-cell { width: 32px; height: 32px; background: #eee; text-align: center; font-size: 1.2em; cursor: pointer; border-radius: 4px; }
+    @media (max-width: 500px) { .minesweeper-board { grid-template-columns: repeat(8, 9vw); } .minesweeper-cell { width: 9vw; height: 9vw; font-size: 4vw; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Minesweeper</h1>
+    <div class="minesweeper-board" id="board"></div>
+    <div id="status" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      let board, revealed, mines, gameOver;
+      function init() {
+        board = Array(64).fill(0);
+        revealed = Array(64).fill(false);
+        mines = [];
+        gameOver = false;
+        while(mines.length<10){let m=Math.floor(Math.random()*64);if(!mines.includes(m))mines.push(m);}
+        mines.forEach(m=>board[m]=-1);
+        for(let i=0;i<64;i++){
+          if(board[i]!==-1){
+            let count=0;
+            [-9,-8,-7,-1,1,7,8,9].forEach(d=>{let n=i+d;if(n>=0&&n<64&&Math.abs((n%8)-(i%8))<=1&&board[n]===-1)count++;});
+            board[i]=count;
+          }
+        }
+        render();
+        document.getElementById('status').textContent = '';
+      }
+      function render() {
+        const b = document.getElementById('board');
+        b.innerHTML = '';
+        board.forEach((v,i)=>{
+          const d = document.createElement('div');
+          d.className = 'minesweeper-cell';
+          d.textContent = revealed[i] ? (v===-1?'💣':v||'') : '';
+          d.onclick = ()=>reveal(i);
+          d.style.background = revealed[i] ? (v===-1?'#f88':'#cfc') : '#eee';
+          b.appendChild(d);
+        });
+      }
+      function reveal(i) {
+        if(gameOver||revealed[i])return;
+        revealed[i]=true;
+        if(board[i]===-1){gameOver=true;document.getElementById('status').textContent='Game Over!';}
+        else if(board[i]===0){
+          [-9,-8,-7,-1,1,7,8,9].forEach(d=>{let n=i+d;if(n>=0&&n<64&&Math.abs((n%8)-(i%8))<=1)reveal(n);});
+        }
+        if(revealed.filter((v,i)=>!mines.includes(i)&&v).length===54){gameOver=true;document.getElementById('status').textContent='You win!';}
+        render();
+      }
+      function resetGame(){init();}
+      init();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

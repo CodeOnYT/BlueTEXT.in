@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .memory-board { display: grid; grid-template-columns: repeat(4, 60px); grid-gap: 5px; margin: 2em auto; }
+    .memory-card { width: 60px; height: 60px; background: #eee; font-size: 2em; text-align: center; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Memory Game</h1>
+    <div class="memory-board" id="memory-board"></div>
+    <div id="memory-status" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      let cards, flipped, matched;
+      function init() {
+        const values = [...'AABBCCDDEEFFGGHH'].sort(()=>Math.random()-0.5);
+        cards = values.map((v,i)=>({value:v,flipped:false,matched:false,id:i}));
+        flipped = [];
+        matched = 0;
+        render();
+        document.getElementById('memory-status').textContent = '';
+      }
+      function render() {
+        const board = document.getElementById('memory-board');
+        board.innerHTML = '';
+        cards.forEach(card => {
+          const div = document.createElement('div');
+          div.className = 'memory-card';
+          div.textContent = card.flipped||card.matched ? card.value : '';
+          div.onclick = () => flip(card.id);
+          div.style.background = card.matched ? '#8f8' : '#eee';
+          board.appendChild(div);
+        });
+      }
+      function flip(id) {
+        if(cards[id].flipped||cards[id].matched||flipped.length===2)return;
+        cards[id].flipped=true;
+        flipped.push(id);
+        render();
+        if(flipped.length===2){
+          setTimeout(check,700);
+        }
+      }
+      function check() {
+        const [a,b]=flipped;
+        if(cards[a].value===cards[b].value){
+          cards[a].matched=cards[b].matched=true;
+          matched+=2;
+        }else{
+          cards[a].flipped=cards[b].flipped=false;
+        }
+        flipped=[];
+        render();
+        if(matched===16){
+          document.getElementById('memory-status').textContent='You win!';
+        }
+      }
+      function resetGame(){init();}
+      init();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

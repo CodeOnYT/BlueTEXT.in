@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    canvas { background: #222; display: block; margin: 2em auto; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Snake Game</h1>
+    <canvas id="snake-canvas" width="300" height="300"></canvas>
+    <div id="score" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      const canvas = document.getElementById('snake-canvas');
+      const ctx = canvas.getContext('2d');
+      let snake, dir, food, score, gameOver, interval;
+      function init() {
+        snake = [{x:5,y:5}];
+        dir = 'RIGHT';
+        food = {x:Math.floor(Math.random()*15),y:Math.floor(Math.random()*15)};
+        score = 0;
+        gameOver = false;
+        clearInterval(interval);
+        interval = setInterval(gameLoop, 120);
+      }
+      function gameLoop() {
+        if(gameOver) return;
+        let head = {...snake[0]};
+        if(dir==='RIGHT') head.x++;
+        if(dir==='LEFT') head.x--;
+        if(dir==='UP') head.y--;
+        if(dir==='DOWN') head.y++;
+        if(head.x<0||head.x>14||head.y<0||head.y>14||snake.some(s=>s.x===head.x&&s.y===head.y)) {
+          gameOver = true;
+          clearInterval(interval);
+          document.getElementById('score').textContent = 'Game Over! Score: '+score;
+          return;
+        }
+        snake.unshift(head);
+        if(head.x===food.x&&head.y===food.y) {
+          score++;
+          food = {x:Math.floor(Math.random()*15),y:Math.floor(Math.random()*15)};
+        } else {
+          snake.pop();
+        }
+        draw();
+      }
+      function draw() {
+        ctx.clearRect(0,0,300,300);
+        ctx.fillStyle = 'lime';
+        snake.forEach(s=>ctx.fillRect(s.x*20,s.y*20,18,18));
+        ctx.fillStyle = 'red';
+        ctx.fillRect(food.x*20,food.y*20,18,18);
+      }
+      document.addEventListener('keydown',e=>{
+        if(e.key==='ArrowUp'&&dir!=='DOWN')dir='UP';
+        if(e.key==='ArrowDown'&&dir!=='UP')dir='DOWN';
+        if(e.key==='ArrowLeft'&&dir!=='RIGHT')dir='LEFT';
+        if(e.key==='ArrowRight'&&dir!=='LEFT')dir='RIGHT';
+      });
+      function resetGame() {
+        init();
+        document.getElementById('score').textContent = '';
+      }
+      init();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>

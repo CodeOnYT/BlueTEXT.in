@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Converter - BlueTEXT.in</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in" height="32"></a>
+            <ul class="nav-links">
+                <li><a href="/tools/index.html">Tools</a></li>
+                <li><a href="/courses/index.html">Courses</a></li>
+                <li><a href="/portfolio.html">Portfolio</a></li>
+                <li><a href="/blog/index.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="tool-section">
+            <h1>Code Converter</h1>
+            <p>Convert code snippets between supported languages. (Demo: JS ⇄ Python)</p>
+            <textarea id="code-input" rows="8" placeholder="Paste code here..."></textarea>
+            <div>
+                <select id="from-lang">
+                    <option value="js">JavaScript</option>
+                    <option value="py">Python</option>
+                </select>
+                <span>→</span>
+                <select id="to-lang">
+                    <option value="py">Python</option>
+                    <option value="js">JavaScript</option>
+                </select>
+                <button onclick="convertCode()" class="btn">Convert</button>
+            </div>
+            <pre id="code-output" class="code-output"></pre>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2024 BlueTEXT.in</p>
+    </footer>
+    <script>
+    function convertCode() {
+        const input = document.getElementById('code-input').value;
+        const from = document.getElementById('from-lang').value;
+        const to = document.getElementById('to-lang').value;
+        const output = document.getElementById('code-output');
+        // Demo: Only basic conversion for print statements
+        if (from === 'js' && to === 'py') {
+            output.textContent = input.replace(/console\.log\((.*)\);?/g, 'print($1)');
+        } else if (from === 'py' && to === 'js') {
+            output.textContent = input.replace(/print\((.*)\)/g, 'console.log($1);');
+        } else {
+            output.textContent = input;
+        }
+    }
+    </script>
+</body>
+</html>

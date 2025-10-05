@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter - BlueTEXT.in</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo"><img src="/assets/logo.svg" alt="BlueTEXT.in" height="32"></a>
+            <ul class="nav-links">
+                <li><a href="/tools/index.html">Tools</a></li>
+                <li><a href="/courses/index.html">Courses</a></li>
+                <li><a href="/portfolio.html">Portfolio</a></li>
+                <li><a href="/blog/index.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="tool-section">
+            <h1>JSON Formatter</h1>
+            <p>Paste your JSON below and click "Format" to beautify and validate it.</p>
+            <textarea id="json-input" rows="10" placeholder="Paste JSON here..."></textarea>
+            <div>
+                <button onclick="formatJSON()" class="btn">Format</button>
+            </div>
+            <pre id="json-output" class="json-output"></pre>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2024 BlueTEXT.in</p>
+    </footer>
+    <script>
+    function formatJSON() {
+        const input = document.getElementById('json-input').value;
+        const output = document.getElementById('json-output');
+        try {
+            const obj = JSON.parse(input);
+            output.textContent = JSON.stringify(obj, null, 2);
+            output.style.color = '#222';
+        } catch (e) {
+            output.textContent = 'Invalid JSON: ' + e.message;
+            output.style.color = 'red';
+        }
+    }
+    </script>
+</body>
+</html>

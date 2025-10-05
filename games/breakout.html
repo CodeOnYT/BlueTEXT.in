@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakout Game - BlueTEXT.in</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    canvas { background: #222; display: block; margin: 2em auto; }
+    @media (max-width: 500px) { canvas { width: 98vw !important; height: 50vw !important; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="/games/index.html">Back to Games</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h1>Breakout Game</h1>
+    <canvas id="breakout-canvas" width="320" height="240"></canvas>
+    <div id="breakout-status" style="margin-top:1em;font-weight:bold;"></div>
+    <button onclick="resetGame()" class="btn">Restart</button>
+    <script>
+      const canvas = document.getElementById('breakout-canvas');
+      const ctx = canvas.getContext('2d');
+      let ball, paddle, bricks, score, gameOver, interval;
+      function init() {
+        ball = {x:160,y:200,dx:2,dy:-2,r:8};
+        paddle = {x:140,y:220,w:60,h:10};
+        bricks = [];
+        for(let r=0;r<3;r++)for(let c=0;c<8;c++)bricks.push({x:20+c*35,y:30+r*20,w:30,h:10,hit:false});
+        score = 0;
+        gameOver = false;
+        clearInterval(interval);
+        interval = setInterval(gameLoop, 16);
+      }
+      function gameLoop() {
+        if(gameOver) return;
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+        if(ball.x<ball.r||ball.x>320-ball.r)ball.dx*=-1;
+        if(ball.y<ball.r)ball.dy*=-1;
+        if(ball.y>240-ball.r){gameOver=true;clearInterval(interval);document.getElementById('breakout-status').textContent='Game Over! Score: '+score;return;}
+        if(ball.x>paddle.x&&ball.x<paddle.x+paddle.w&&ball.y>paddle.y-ball.r&&ball.y<paddle.y+paddle.h)ball.dy*=-1;
+        bricks.forEach(b=>{
+          if(!b.hit&&ball.x>b.x&&ball.x<b.x+b.w&&ball.y>b.y&&ball.y<b.y+b.h){b.hit=true;ball.dy*=-1;score+=10;}
+        });
+        draw();
+        if(bricks.every(b=>b.hit)){gameOver=true;clearInterval(interval);document.getElementById('breakout-status').textContent='You win! Score: '+score;}
+      }
+      function draw() {
+        ctx.clearRect(0,0,320,240);
+        ctx.fillStyle='lime';ctx.beginPath();ctx.arc(ball.x,ball.y,ball.r,0,2*Math.PI);ctx.fill();
+        ctx.fillStyle='blue';ctx.fillRect(paddle.x,paddle.y,paddle.w,paddle.h);
+        bricks.forEach(b=>{if(!b.hit){ctx.fillStyle='orange';ctx.fillRect(b.x,b.y,b.w,b.h);}});
+      }
+      document.addEventListener('keydown',e=>{
+        if(e.key==='ArrowLeft'&&paddle.x>0)paddle.x-=20;
+        if(e.key==='ArrowRight'&&paddle.x<320-paddle.w)paddle.x+=20;
+      });
+      function resetGame(){init();document.getElementById('breakout-status').textContent='';}
+      init();
+    </script>
+  </main>
+  <footer class="footer">
+    <p>© 2024 BlueTEXT.in</p>
+  </footer>
+</body>
+</html>
