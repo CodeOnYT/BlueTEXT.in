@@ -1,54 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlueTEXT.in</title>
+    <meta name="description" content="BlueTEXT.in - Your hub for development resources, courses, and tools" />
+    <title>BlueTEXT.in - Development Resources & Tools</title>
+    
+    <!-- SEO and social media tags -->
+    <meta property="og:title" content="BlueTEXT.in - Development Resources & Tools" />
+    <meta property="og:description" content="Your hub for development resources, courses, and tools" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bluetext.in" />
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://bluetext.in/" />
-    <meta http-equiv="refresh" content="0;url=https://bluetext.in/" id="redirect-meta" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/styles/main.css" as="style" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css" />
+    
+    <!-- Domain redirect script -->
     <script>
-      // Handle redirects for various domain variants
-      if (window.location.protocol !== 'https:' || 
-          (window.location.hostname !== 'bluetext.in' && window.location.hostname !== 'www.bluetext.in')) {
-          window.location.href = 'https://bluetext.in' + window.location.pathname;
-      }
+        if (window.location.protocol !== 'https:' || 
+            (window.location.hostname !== 'bluetext.in' && window.location.hostname !== 'www.bluetext.in')) {
+            window.location.href = 'https://bluetext.in' + window.location.pathname;
+        }
     </script>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header id="header">
-      <nav class="navigation">
-        <a href="" class="logo" alt="BlueTEXT.in Logo">
-          <svg
-            width="125"
-            height="32"
-            viewBox="0 0 125 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            `
-            <rect width="125" height="32" fill="rgb(6,72,191)" />
-            `
-            <text
-              x="8"
-              y="24"
-              font-weight="600"
-              font-size="20"
-              fill="rgb(225,225,225)"
-            >
-              BlueTEXT.
-            </text>
-            <text
-              x="100"
-              y="24"
-              font-weight="600"
-              font-size="20"
-              fill="rgb(225,225,0)"
-            >
-              .in
-            </text>
-          </svg>
-        </a>
+    <!-- Header component -->
+    <div id="header-component"></div>
+    
+    <!-- Main content -->
+    <main class="main-content">
+      <div class="hero">
+        <h1>Welcome to BlueTEXT.in</h1>
+        <p>Your hub for development resources, tutorials, and tools</p>
+      </div>
+      
+      <section class="featured-content">
+        <h2>Featured Content</h2>
+        <div class="grid-container">
+          <article class="card lazy-load">
+            <div class="card-content">
+              <h3>Latest Course</h3>
+              <p>Master modern web development with our comprehensive courses.</p>
+              <a href="/courses" class="btn">View Courses</a>
+            </div>
+          </article>
+          
+          <article class="card lazy-load">
+            <div class="card-content">
+              <h3>Developer Tools</h3>
+              <p>Explore our collection of tools to boost your productivity.</p>
+              <a href="/tools" class="btn">View Tools</a>
+            </div>
+          </article>
+          
+          <article class="card lazy-load">
+            <div class="card-content">
+              <h3>Mobile Apps</h3>
+              <p>Check out our mobile applications like CalculatorSc.</p>
+              <a href="/apps" class="btn">View Apps</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      
+      <section class="featured-app">
+        <h2>Featured App: CalculatorSc</h2>
+        <div class="app-showcase">
+          <div class="app-info">
+            <h3>A Powerful Calculator Suite</h3>
+            <ul>
+              <li>Standard & Scientific Calculators</li>
+              <li>Full Calculation History with Search</li>
+              <li>Multiple Unit Converters</li>
+              <li>Financial & Health Tools</li>
+            </ul>
+            <div class="app-links">
+              <a href="https://github.com/mTulsiram/CalculatorSc" class="btn" target="_blank" rel="noopener">View on GitHub</a>
+              <!-- Add Play Store link when available -->
+            </div>
+          </div>
+          <div class="app-preview lazy-load">
+            <img src="/assets/calculator-preview.png" alt="CalculatorSc Preview" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      
+      <section class="youtube-section">
+        <h2>Latest from CodeON</h2>
+        <div class="video-container lazy-load">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/NslEfqPmSNA?si=0U7GZ0CTb3Ntjxfj"
+            title="YouTube video player"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </section>
+      
+      <section class="support-section">
+        <h2>Support Our Work</h2>
+        <div class="support-options">
+          <a href="https://www.buymeacoffee.com/BlueTEXT.in" class="support-link" target="_blank" rel="noopener">
+            <span class="icon">☕</span>
+            <span>Buy Me a Coffee</span>
+          </a>
+          <a href="https://www.patreon.com/BlueTEXT" class="support-link" target="_blank" rel="noopener">
+            <span class="icon">🎯</span>
+            <span>Patreon</span>
+          </a>
+          <a href="https://ko-fi.com/bluetextin" class="support-link" target="_blank" rel="noopener">
+            <span class="icon">💖</span>
+            <span>Ko-fi</span>
+          </a>
+        </div>
+      </section>
+    </main>
         <ul class="navigation-links">
           <li><a href="/nav/about.html" class="nav-link-white">About</a></li>
           <li>
